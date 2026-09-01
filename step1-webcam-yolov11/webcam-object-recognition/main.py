@@ -4,7 +4,7 @@ from ultralytics import YOLO
 coco_model = YOLO("./models/yolo11n.pt")  # Load a pretrained YOLOv11 model
 
 
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # DirectShow backend: avoids MSMF grab errors on Windows
+cap = cv2.VideoCapture(0)  # Open the default webcam
 
 # read frames
 frame_number = -1
