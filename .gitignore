@@ -3,3 +3,4 @@ runs/
 datasets/
 *.pt
 .env*
+.vscode/
