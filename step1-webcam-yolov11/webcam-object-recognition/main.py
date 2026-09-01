@@ -4,7 +4,7 @@ from ultralytics import YOLO
 coco_model = YOLO("./models/yolo11n.pt")  # Load a pretrained YOLOv11 model
 
 
-cap = cv2.VideoCapture(0)  # Open a video file
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # DirectShow backend: avoids MSMF grab errors on Windows
 
 # read frames
 frame_number = -1
@@ -15,8 +15,8 @@ while ret:
     ret, frame = cap.read()  # Read a frame from the video
     if ret:
         detections = coco_model.predict(
-            frame, conf=0.5
-        )  # Perform detection on the frame
+            frame, conf=0.5, verbose=False
+        )  # verbose=False: no per-frame console spam (kills editor performance over time)
         for detection in detections:
             boxes = detection.boxes.xyxy
             scores = detection.boxes.conf
