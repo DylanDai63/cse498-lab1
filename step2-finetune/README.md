@@ -8,3 +8,11 @@ Open Images images are sourced from Flickr under CC BY 2.0; annotations CC BY 4.
 
 - `dataset/` — YOLO layout + `data.yaml` (nc=2)
 - `dataset.zip` — same content, for direct upload into the Colab runtime
+
+## Compliance with the revised Lab 1 instructions (instructor email, 2026-09-01)
+
+- **Bounding-box ground truth**: every image carries YOLO-format box labels sourced from Open Images official bbox annotations. ✓
+- **Unseen/new classes for the pretrained model**: verified programmatically against `yolo11n.pt` class list — neither `tomato` nor `toilet paper` is among the 80 COCO classes (which also motivated dropping `bowl`, a COCO class, from an earlier 3-class draft). ✓
+- **YOLO format, directly usable in Colab**: `dataset/` follows the standard YOLO layout (`train/valid` x `images/labels` + `data.yaml`, nc=2); `dataset.zip` uploads straight into the Colab runtime. ✓
+
+Sourcing approach: images collected from the web (Google Open Images) that already carry bounding-box annotations — consistent with the revised instructions, which accept web-collected images and existing annotated datasets; Roboflow Annotate was unnecessary since box labels already existed.
