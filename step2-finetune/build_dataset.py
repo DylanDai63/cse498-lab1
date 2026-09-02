@@ -10,8 +10,8 @@ from PIL import Image
 random.seed(42)
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "dataset")
-CLASSES = {"/m/07j87": ("tomato", 0), "/m/09gtd": ("toilet_paper", 1)}
-CAPS = {"tomato": 34, "toilet_paper": 16}
+CLASSES = {"/m/07j87": ("tomato", 0)}
+CAPS = {"tomato": 50}
 
 # rows per image: {(split,img): [(cls_id, xmin,xmax,ymin,ymax), ...]}
 imgs = defaultdict(list)
@@ -28,12 +28,12 @@ for fname, split in [("targets.csv", "validation"), ("targets-test.csv", "test")
                 bad.add(key); continue
             imgs[key].append((CLASSES[label][1], xmin, xmax, ymin, ymax))
 
-cand = {k: v for k, v in imgs.items() if k not in bad and 1 <= len(v) <= 4}
+cand = {k: v for k, v in imgs.items() if k not in bad and 1 <= len(v) <= 6}
 # bucket by dominant class (fewest-first so toilet_paper keeps its scarce images)
 by_class = defaultdict(list)
 for k, v in cand.items():
     cls = min(set(c for c, *_ in v))  # arbitrary but deterministic dominant pick
-    names = {0: "tomato", 1: "toilet_paper"}
+    names = {0: "tomato"}
     # dominant = most frequent class in image
     cnt = defaultdict(int)
     for c, *_ in v: cnt[c] += 1
@@ -71,5 +71,5 @@ for (cls, (split, img)), dest in zip(chosen, splits):
         print("FAIL", img, e); fail += 1
 
 with open(os.path.join(OUT, "data.yaml"), "w") as f:
-    f.write("train: train/images\nval: valid/images\nnc: 2\nnames: [tomato, toilet_paper]\n")
+    f.write("train: train/images\nval: valid/images\nnc: 1\nnames: [tomato]\n")
 print(f"downloaded ok={ok} fail={fail}; dataset at {OUT}")
