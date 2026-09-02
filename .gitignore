@@ -4,3 +4,7 @@ datasets/
 *.pt
 .env*
 .vscode/
+
+# Committed model weights (exceptions to *.pt)
+!step1-webcam-yolov11/webcam-object-recognition/models/yolo11n.pt
+!step2-finetune/results/weights/best.pt
