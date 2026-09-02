@@ -14,10 +14,10 @@ This repository contains all three experiments and the report for Lab 1.
 
 | Folder | Experiment | Status |
 |---|---|---|
-| `step1-webcam-yolov11/` | Pretrained YOLOv11 on live webcam (grocery/household objects) | in progress |
-| `step2-finetune/` | Fine-tuning YOLOv11 on a ~50-image custom dataset; before/after comparison | pending |
-| `step3-yoloe-openset/` | Open-set (zero-shot) object detection with YOLOE | pending |
-| `report/` | 6-page report | pending |
+| `step1-webcam-yolov11/` | Pretrained YOLOv11 on live webcam + redo with fine-tuned weights | done |
+| `step2-finetune/` | Fine-tuning YOLOv11 on a 50-image curated tomato dataset; before/after comparison | done |
+| `step3-yoloe-openset/` | Open-set (zero-shot) object detection with YOLOE | done |
+| `report/` | 6-page report (LaTeX source + PDF) | done |
 
 Run instructions for each experiment are in the corresponding folder's README.
 
